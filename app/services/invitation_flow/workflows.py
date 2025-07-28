@@ -122,6 +122,7 @@ class FormBasedWorkflow(InvitationWorkflow):
         # Determine primary server type for UI
         primary_server = servers[0] if servers else None
         server_type = primary_server.server_type if primary_server else "jellyfin"
+        server_name = primary_server.name if primary_server else "Unknown Server"
 
         return InvitationResult(
             status=ProcessingStatus.AUTHENTICATION_REQUIRED,
@@ -132,6 +133,7 @@ class FormBasedWorkflow(InvitationWorkflow):
                 "template_name": "welcome-jellyfin.html",
                 "form": form,
                 "server_type": server_type,
+                "server_name": server_name,
                 "servers": servers,
             },
         )
@@ -170,6 +172,7 @@ class FormBasedWorkflow(InvitationWorkflow):
 
         primary_server = servers[0] if servers else None
         server_type = primary_server.server_type if primary_server else "jellyfin"
+        server_name = primary_server.name if primary_server else "Unknown Server"
 
         return InvitationResult(
             status=ProcessingStatus.FAILURE,
@@ -180,6 +183,7 @@ class FormBasedWorkflow(InvitationWorkflow):
                 "template_name": "welcome-jellyfin.html",
                 "form": form,
                 "server_type": server_type,
+                "server_name": server_name,
                 "servers": servers,
                 "error": error_message,
             },
@@ -199,6 +203,7 @@ class FormBasedWorkflow(InvitationWorkflow):
 
         primary_server = servers[0] if servers else None
         server_type = primary_server.server_type if primary_server else "jellyfin"
+        server_name = primary_server.name if primary_server else "Unknown Server"
 
         error_messages = [
             f"{result.server.name}: {result.message}" for result in failed
@@ -214,6 +219,7 @@ class FormBasedWorkflow(InvitationWorkflow):
                 "template_name": "welcome-jellyfin.html",
                 "form": form,
                 "server_type": server_type,
+                "server_name": server_name,
                 "servers": servers,
                 "error": error_text,
             },
@@ -227,8 +233,8 @@ class PlexOAuthWorkflow(InvitationWorkflow):
         self, invitation: Invitation, servers: list[MediaServer]
     ) -> InvitationResult:
         """Show Plex OAuth form."""
-        # Get server name (prefer invitation's primary server, fallback to first server or Settings)
-        server_name = None
+        # Get server name with fallback (prefer first server)
+        server_name = "Unknown Server"
         if servers:
             server_name = servers[0].name
 
@@ -274,10 +280,12 @@ class PlexOAuthWorkflow(InvitationWorkflow):
         self, invitation: Invitation, error_message: str
     ) -> InvitationResult:
         """Create result for OAuth errors."""
-        # Get server name from invitation
-        server_name = None
+        # Get server name from invitation with fallback
+        server_name = "Unknown Server"
         if invitation.servers:
             server_name = invitation.servers[0].name
+        elif hasattr(invitation, 'server') and invitation.server:
+            server_name = invitation.server.name
 
         return InvitationResult(
             status=ProcessingStatus.FAILURE,
@@ -303,10 +311,17 @@ class MixedWorkflow(InvitationWorkflow):
         plex_token = session.get("plex_oauth_token")
         other_servers = [s for s in servers if s.server_type != "plex"]
 
+    def show_initial_form(
+        self, invitation: Invitation, servers: list[MediaServer]
+    ) -> InvitationResult:
+        """Show initial form based on authentication state."""
+        plex_token = session.get("plex_oauth_token")
+        other_servers = [s for s in servers if s.server_type != "plex"]
+
         if not plex_token:
             # Start with Plex OAuth
             # Get server name from servers (prefer plex server)
-            server_name = None
+            server_name = "Unknown Server"
             plex_server = next((s for s in servers if s.server_type == "plex"), None)
             if plex_server:
                 server_name = plex_server.name
