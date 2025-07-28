@@ -37,12 +37,16 @@ def _ensure_keys_exist():
         "discord_id",
         "custom_html",
     ]
-    for key in default_keys:
-        if not Settings.query.filter_by(key=key).first():
-            setting = Settings()
-            setting.key = key
-            setting.value = None
-            db.session.add(setting)
+    
+    # Use no_autoflush to prevent SQLAlchemy from auto-flushing when querying
+    # while we have pending objects in the session
+    with db.session.no_autoflush:
+        for key in default_keys:
+            if not Settings.query.filter_by(key=key).first():
+                setting = Settings()
+                setting.key = key
+                setting.value = None
+                db.session.add(setting)
     db.session.commit()
 
 
