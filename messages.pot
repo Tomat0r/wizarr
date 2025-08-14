@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-13 03:58+0000\n"
+"POT-Creation-Date: 2025-08-14 03:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,6 +72,16 @@ msgstr ""
 #: app/blueprints/admin_accounts/routes.py:170
 #, python-brace-format
 msgid "Failed to reset passkeys for {}"
+msgstr ""
+
+#: app/blueprints/api_keys/routes.py:58
+msgid ""
+"API key created successfully. Please copy it now as it won't be shown "
+"again."
+msgstr ""
+
+#: app/blueprints/api_keys/routes.py:82
+msgid "API key deleted successfully"
 msgstr ""
 
 #: app/blueprints/auth/routes.py:85
@@ -783,30 +793,30 @@ msgstr ""
 msgid "Local"
 msgstr ""
 
-#: app/templates/admin/user_modal.html:55
+#: app/templates/admin/user_modal.html:53
 msgid "Expiry date"
 msgstr ""
 
-#: app/templates/admin/user_modal.html:66
+#: app/templates/admin/user_modal.html:63
 msgid "Update"
 msgstr ""
 
-#: app/templates/admin/user_modal.html:72
+#: app/templates/admin/user_modal.html:69
 msgid "Current expiry"
 msgstr ""
 
-#: app/templates/admin/user_modal.html:74
+#: app/templates/admin/user_modal.html:71
 msgid "No expiry set"
 msgstr ""
 
-#: app/templates/admin/user_modal.html:91
+#: app/templates/admin/user_modal.html:86
 msgid "Expiry date (leave blank for never)"
 msgstr ""
 
-#: app/templates/admin/user_modal.html:102
+#: app/templates/admin/user_modal.html:96
 #: app/templates/modals/edit-admin.html:33
 #: app/templates/modals/edit-identity.html:26
-#: app/templates/modals/edit-server.html:100
+#: app/templates/modals/edit-server.html:103
 #: app/templates/modals/wizard-bundle-form.html:30
 #: app/templates/modals/wizard-simple-step-form.html:29
 #: app/templates/modals/wizard-step-form.html:37
@@ -816,17 +826,18 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: app/templates/admin/user_modal.html:107
+#: app/templates/admin/user_modal.html:101
 #: app/templates/components/passkey_add_form.html:26
 #: app/templates/components/passkey_register.html:16
 #: app/templates/modals/bundle-add-steps.html:32
 #: app/templates/modals/connection-form.html:158
 #: app/templates/modals/create-admin.html:34
+#: app/templates/modals/create-api-key.html:66
 #: app/templates/modals/create-notification-agent.html:91
-#: app/templates/modals/create-server.html:98
+#: app/templates/modals/create-server.html:102
 #: app/templates/modals/edit-admin.html:34
 #: app/templates/modals/edit-identity.html:27
-#: app/templates/modals/edit-server.html:101
+#: app/templates/modals/edit-server.html:104
 #: app/templates/modals/invite.html:269
 #: app/templates/modals/wizard-bundle-form.html:29
 #: app/templates/modals/wizard-preset-form.html:52
@@ -840,38 +851,38 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: app/templates/admin/user_modal.html:117
+#: app/templates/admin/user_modal.html:111
 msgid "Invitation Details"
 msgstr ""
 
-#: app/templates/admin/user_modal.html:120
+#: app/templates/admin/user_modal.html:114
 msgid "Code"
 msgstr ""
 
-#: app/templates/admin/user_modal.html:122 app/templates/modals/invite.html:116
+#: app/templates/admin/user_modal.html:116 app/templates/modals/invite.html:116
 #: app/templates/modals/invite.html:149
 #: app/templates/tables/invite_card.html:185
 msgid "Duration"
 msgstr ""
 
-#: app/templates/admin/user_modal.html:122
+#: app/templates/admin/user_modal.html:116
 #: app/templates/tables/invite_card.html:187
 msgid "days"
 msgstr ""
 
-#: app/templates/admin/user_modal.html:125
+#: app/templates/admin/user_modal.html:119
 msgid "Invitation expires"
 msgstr ""
 
-#: app/templates/admin/users.html:21
+#: app/templates/admin/users.html:176
 msgid "Link"
 msgstr ""
 
-#: app/templates/admin/users.html:22
+#: app/templates/admin/users.html:177
 msgid "Unlink"
 msgstr ""
 
-#: app/templates/admin/users.html:23 app/templates/servers/index.html:27
+#: app/templates/admin/users.html:178 app/templates/servers/index.html:27
 #: app/templates/settings/connections.html:106
 msgid "Delete"
 msgstr ""
@@ -1099,6 +1110,45 @@ msgstr ""
 msgid "Add Administrator"
 msgstr ""
 
+#: app/templates/modals/create-api-key.html:11
+msgid "API Key Created"
+msgstr ""
+
+#: app/templates/modals/create-api-key.html:13
+#: app/templates/settings/api_keys.html:17
+msgid "Create API Key"
+msgstr ""
+
+#: app/templates/modals/create-api-key.html:26
+msgid "API Key Created Successfully"
+msgstr ""
+
+#: app/templates/modals/create-api-key.html:29
+msgid ""
+"Your API key has been created. Please copy it now as it will not be shown"
+" again."
+msgstr ""
+
+#: app/templates/modals/create-api-key.html:35
+msgid "Copy to clipboard"
+msgstr ""
+
+#: app/templates/modals/create-api-key.html:42
+msgid "Name:"
+msgstr ""
+
+#: app/templates/modals/create-api-key.html:48
+msgid "Done"
+msgstr ""
+
+#: app/templates/modals/create-api-key.html:57
+msgid "API Key Name"
+msgstr ""
+
+#: app/templates/modals/create-api-key.html:60
+msgid "Enter a descriptive name to help you identify this API key later."
+msgstr ""
+
 #: app/templates/modals/create-notification-agent.html:31
 msgid "New Agent"
 msgstr ""
@@ -1128,7 +1178,7 @@ msgstr ""
 msgid "Add Server"
 msgstr ""
 
-#: app/templates/modals/create-server.html:97
+#: app/templates/modals/create-server.html:101
 msgid "Test & Add"
 msgstr ""
 
@@ -1292,6 +1342,18 @@ msgstr ""
 msgid "Create Step"
 msgstr ""
 
+#: app/templates/partials/api_keys_grid.html:28
+msgid "Delete API Key"
+msgstr ""
+
+#: app/templates/partials/api_keys_grid.html:43
+msgid "No API keys"
+msgstr ""
+
+#: app/templates/partials/api_keys_grid.html:44
+msgid "Get started by creating a new API key."
+msgstr ""
+
 #: app/templates/servers/index.html:5 app/templates/settings/servers.html:6
 msgid "Media Servers"
 msgstr ""
@@ -1346,6 +1408,10 @@ msgstr ""
 
 #: app/templates/settings/admins.html:60
 msgid "Add Admin"
+msgstr ""
+
+#: app/templates/settings/api_keys.html:7 app/templates/settings/index.html:110
+msgid "API Keys"
 msgstr ""
 
 #: app/templates/settings/connections.html:7
@@ -1718,22 +1784,26 @@ msgid "Edit nickname"
 msgstr ""
 
 #: app/templates/tables/user_card.html:82
+msgid "Invited"
+msgstr ""
+
+#: app/templates/tables/user_card.html:92
 msgid "Invite Code"
 msgstr ""
 
-#: app/templates/tables/user_card.html:95
+#: app/templates/tables/user_card.html:105
 msgid "Downloads enabled"
 msgstr ""
 
-#: app/templates/tables/user_card.html:101
+#: app/templates/tables/user_card.html:111
 msgid "Downloads disabled"
 msgstr ""
 
-#: app/templates/tables/user_card.html:110
+#: app/templates/tables/user_card.html:120
 msgid "Live TV enabled"
 msgstr ""
 
-#: app/templates/tables/user_card.html:116
+#: app/templates/tables/user_card.html:126
 msgid "Live TV disabled"
 msgstr ""
 
